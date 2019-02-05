@@ -1,16 +1,27 @@
-<%= @post.title %>
-<%= @post.url %>
+<h2><%= @post.title %></h2>
+<a href="#"><%= @post.url %></a><br>
 <%= @post.content %>
-<%= @post.author.username %>
+<b>Create by: </b><%= @post.author.username %>
 
-<a href="<%= edit_post_url(@post) %>">
-  Edit Post
-</a>
+<div>
+  <a href="<%= subs_url %>">Back to subs</a>
+</div>
 
-<a href="<%= subs_url %>">Back to subs</a>
+<% if current_user == @post.author %>
+  <a href="<%= edit_post_url(@post) %>">
+    Edit Post
+  </a>
+  <form action="<%= post_url(@post) %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Post">
+  </form>
+<% end %>
 
-<form action="<%= post_url(@post) %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Post">
-</form>
+<a href="<%= new_post_comment_url(@post) %>">Add Comment</a>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.author.username %>: <%= comment.content %></li>
+  <% end %>
+</ul>
