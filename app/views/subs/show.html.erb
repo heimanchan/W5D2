@@ -2,7 +2,14 @@
 <p>Description</p>
 <%= @sub.description %>
 <br>
-<a href="#">Make New Post!</a>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  <% end %>
+</ul>
+
+<a href="<%= new_sub_post_url(@sub) %>">Make New Post!</a>
 <a href="<%= subs_url %>">Back to subs</a>
 <% if @sub.moderator == current_user %>
   <a href="<%= edit_sub_url(@sub) %>">Edit</a>

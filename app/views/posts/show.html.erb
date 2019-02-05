@@ -1,0 +1,16 @@
+<%= @post.title %>
+<%= @post.url %>
+<%= @post.content %>
+<%= @post.author.username %>
+
+<a href="<%= edit_post_url(@post) %>">
+  Edit Post
+</a>
+
+<a href="<%= sub_url(@post.sub_id) %>">Back to sub</a>
+
+<form action="<%= post_url(@post) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Post">
+</form>
