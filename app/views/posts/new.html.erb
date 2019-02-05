@@ -17,5 +17,11 @@
     </textarea>
   </label>
 
+  <ul>
+    <% Sub.all.each do |sub| %>
+      <li><input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"> <%= sub.title %></li>
+    <% end %>
+  </ul>
+
   <input type="submit" value="Create New Post">
 </form>

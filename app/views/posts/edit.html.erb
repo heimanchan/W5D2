@@ -2,7 +2,6 @@
 
 <form action="<%= post_url(@post) %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="post[sub_id]" value="<%= params[:sub_id] || @post.sub_id %>">
   <input type="hidden" name="_method" value="patch">
 
   <label>Title
@@ -18,6 +17,16 @@
       <%= @post.content %>
     </textarea>
   </label>
+
+  <ul>
+    <input type="hidden" name="post[sub_ids][]" value="">
+    <% Sub.all.each do |sub| %>
+      <li>
+        <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>" <%= 'checked' if @post.sub_ids.include?(sub.id) %> > 
+        <%= sub.title %>
+      </li>
+    <% end %>
+  </ul>
 
   <input type="submit" value="Update Post">
 </form>

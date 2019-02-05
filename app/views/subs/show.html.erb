@@ -9,7 +9,7 @@
   <% end %>
 </ul>
 
-<a href="<%= new_sub_post_url(@sub) %>">Make New Post!</a>
+<a href="<%= new_post_url %>">Make New Post!</a>
 <a href="<%= subs_url %>">Back to subs</a>
 <% if @sub.moderator == current_user %>
   <a href="<%= edit_sub_url(@sub) %>">Edit</a>

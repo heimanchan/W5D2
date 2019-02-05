@@ -7,7 +7,7 @@
   Edit Post
 </a>
 
-<a href="<%= sub_url(@post.sub_id) %>">Back to sub</a>
+<a href="<%= subs_url %>">Back to subs</a>
 
 <form action="<%= post_url(@post) %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
