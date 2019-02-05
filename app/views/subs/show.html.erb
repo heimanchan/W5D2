@@ -1,0 +1,9 @@
+<h2><%= @sub.title %></h2>
+<p>Description</p>
+<%= @sub.description %>
+<br>
+<a href="#">Make New Post!</a>
+<a href="<%= subs_url %>">Back to subs</a>
+<% if @sub.moderator == current_user %>
+  <a href="<%= edit_sub_url(@sub) %>">Edit</a>
+<% end %>
