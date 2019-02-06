@@ -4,12 +4,12 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <label>Username
-    <input type="text" name="user[username]">
+    <input type="text" name="user[username]" class="form-control" value="<%= @user.username %>">
   </label>
 
   <label>Password
-    <input type="password" name="user[password]">
+    <input type="password" name="user[password]" class="form-control">
   </label>
 
-  <input type="submit" value="Sign In">
+  <input type="submit" value="Sign In" class="btn btn-primary">
 </form>

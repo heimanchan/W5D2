@@ -1,9 +1,7 @@
 <h2>All Subs</h2>
-<a href="<%= new_sub_url %>">Make New Sub</a>
-<ul>
+<a href="<%= new_sub_url %>" class="btn btn-sm btn-primary">Make New Sub</a>
+<div class="list-group">
   <% @subs.each do |sub| %>
-    <li>
-      <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
-    </li>
+    <a href="<%= sub_url(sub) %>" class="list-group-item list-group-item-action"><%= sub.title %></a>
   <% end %>
-</ul>
+</div>

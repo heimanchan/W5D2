@@ -1,12 +1,15 @@
 class SessionsController < ApplicationController
-  def new; end
+  def new
+    @user = User.new
+  end
 
   def create
-    user = User.find_by_credentials(params[:user][:username], params[:user][:password])
-    if user
-      login!(user)
+    @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+    if @user
+      login!(@user)
       redirect_to subs_url
     else
+      @user = User.new(username: params[:user][:username])
       flash.now[:errors] = ["Couldn't find user by credential"]
       render :new
     end

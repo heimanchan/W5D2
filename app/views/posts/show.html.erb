@@ -14,7 +14,7 @@
   <form action="<%= post_url(@post) %>" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Post">
+    <input type="submit" value="Delete Post" class="btn btn-sm btn-danger">
   </form>
 <% end %>
 

@@ -10,25 +10,44 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      Welcome, <%= current_user.username %>!
-      <form action="<%= session_url %>" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Logout">
-      </form>
-    <% else %>
-      <a href="<%= new_user_url %>">Sign Up</a>
-      <a href="<%= new_session_url %>">Sign In</a>
-    <% end %>
-    <% if flash[:errors] %>
-      <ul>
-        <% flash[:errors].each do |error| %>
-          <li><%= error %></li>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary text-white">
+      <div class="container">
+        <a class="navbar-brand" href="<%= root_url %>">RedditClone</a>
+        <% if logged_in? %>
+          <span>Welcome, <%= current_user.username %>!</span>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="<%= subs_url %>">Subs</a></li>
+            <li class="nav-item">
+              <form action="<%= session_url %>" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Logout" class="btn btn-danger">
+              </form>
+            </li>
+          </ul>
+        <% else %>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="<%= subs_url %>">Subs</a></li>
+            <li class="nav-item"><a class="nav-link" href="<%= new_session_url %>">Sign In</a></li>
+            <li class="nav-item"><a class="nav-link" href="<%= new_user_url %>">Sign Up</a></li>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
+      </div>
+    </nav>
 
-    <%= yield %>
+    <div class="container">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+          <p class="alert alert-danger"><%= error %></li>
+        <% end %>
+      <% end %>
+
+      <div class="card">
+        <div class="card-body">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
+  
 </html>
