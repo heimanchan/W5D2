@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy
-    redirect_to sub_url(@post.sub_id)
+    redirect_to subs_url
   end
 
   private
