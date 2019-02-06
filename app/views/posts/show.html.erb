@@ -20,8 +20,9 @@
 
 <a href="<%= new_post_comment_url(@post) %>">Add Comment</a>
 
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li><%= comment.author.username %>: <%= comment.content %></li>
-  <% end %>
-</ul>
+
+<%= render @all_comments %>
+
+<!-- <%# @post.comments.where(parent_comment_id: nil).each do |comment| %>
+  <%#= render 'comment', comment: comment%>
+<%# end %> -->

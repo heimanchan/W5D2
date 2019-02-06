@@ -1,0 +1,4 @@
+<ul>
+  <li><%= comment.author.username %>: <a href="<%= comment_url(comment) %>"><%= comment.content %></a></li>
+  <%= render comment.child_comments %>
+</ul>

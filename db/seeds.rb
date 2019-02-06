@@ -21,6 +21,6 @@ ActiveRecord::Base.transaction do
   peace = Post.create!(title: "The world is in peace", url: "cnn.com", content: "By giving everyone a beer!", author: dave, subs: [html, world_news])
 
   comment1 = Comment.create!(content: "I love ruby!", author: drew, post: oop)
-  comment2 = Comment.create!(content: "I love beer", author: dave, post: world_hunger)
   comment3 = Comment.create!(content: "I make beer!", author: drew, post: peace)
+  comment2 = Comment.create!(content: "I love beer", author: dave, post: world_hunger, parent_comment: comment3)
 end

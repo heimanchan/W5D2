@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: :show
 
   def new
     @post = Post.new
@@ -31,7 +31,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
+    @all_comments = @post.comments.includes(:child_comments).where(parent_comment_id: nil)
   end
 
   def destroy
